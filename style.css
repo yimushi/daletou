@@ -1,0 +1,51 @@
+
+.ad img{
+    width: 100%;
+}
+#app{
+    box-sizing:border-box;
+    height: calc(100% - 200px);
+    width: 100%;
+    padding: 10px;
+    background-color: #d2d8b2;
+    overflow: hidden;
+}
+.header_top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#400b17;
+    padding-bottom: 10px;
+}
+.one,.tre{
+    flex: 1;
+    font-size: 10px;
+}
+.tre{
+    text-align: right;
+}
+.two{
+    flex: 2;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+#elec_table{
+    position:relative;
+    table-layout : fixed;
+}
+.table-body{
+    overflow-y:auto;
+    overflow-x:hidden;
+    height: calc(100% - 47.2px);
+}
+table{
+    table-layout:fixed;
+}
+#elec_table td{
+    /* width:20%; */
+    white-space:normal;
+}
+.theadstyle thead tr th{
+    text-align:center;
+}
