@@ -1,7 +1,7 @@
 html{width: 100%;height:100%;}
 body{font-family:Tahoma,"微软雅黑",sans-serif;margin:0;padding:0;width:100%;height: 100%;font-size:12px;overflow: hidden;}
 form{ font-size: 13px;}
-*{margin:0 auto;padding:0;}
+*{margin:0;padding:0;}
 img{border:0;font-size:0;line-height:0; vertical-align:middle;}
 a{text-decoration:none;text-align:center;display:inline-block;*display:inline;*zoom:1;color:#0F3F94; cursor:pointer;outline:none;}
 a:active{star:expression(this.onFocus=this.blur());*star: expression('');/*ie6-7*/}

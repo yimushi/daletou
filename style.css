@@ -10,6 +10,13 @@
     background-color: #d2d8b2;
     overflow: hidden;
 }
+#app2{
+    box-sizing:border-box;
+    width: 100%;
+    padding: 10px;
+    background-color: #DCDCDC;
+    overflow: hidden;
+}
 .header_top{
     display: flex;
     justify-content: center;
@@ -48,4 +55,47 @@ table{
 }
 .theadstyle thead tr th{
     text-align:center;
+}
+.tabtrend1 {
+    width: auto;
+    background-color: #DCDCDC;
+    font-family: Arial;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: inherit;
+}
+.tabtrend1 td {
+    height: 22px;
+}
+.tabtrend1 thead tr, .tabtrend1 tbody.m td {
+    background-color: #F4F4F4;
+}
+.tabtrend1 tbody tr, .tabtrend1 tfoot tr {
+    background-color: #ffffff;
+}
+.blue_2{
+    line-height: 20px;
+    color: blue;
+    font-size: 14px;
+    font-weight: bold
+}
+#app2{
+    height:100%;
+    overflow-y: scroll;
+}
+.app2_title{
+    text-align: center;
+    color:red;
+    font-size: 14px;
+    height: 26px;
+    line-height: 26px;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+.app2_title span{
+    color:#000;
+    font-size: 8px;
+}
+_td table tbody td{
+    width: 24.8px;
 }
