@@ -1,0 +1,137 @@
+
+.ad img{
+    width: 100%;
+    height: 200px;
+}
+#app{
+    box-sizing:border-box;
+    height: calc(100% - 200px);
+    width: 100%;
+    padding: 10px;
+    background-color: #d2d8b2;
+    overflow: hidden;
+}
+#app2{
+    box-sizing:border-box;
+    width: 100%;
+    padding: 10px;
+    background-color: #DCDCDC;
+    overflow: hidden;
+}
+.header_top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#400b17;
+    padding-bottom: 10px;
+}
+.one,.tre{
+    flex: 1;
+    font-size: 10px;
+}
+.tre{
+    text-align: right;
+}
+.two{
+    flex: 2;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+#elec_table{
+    position:relative;
+    table-layout : fixed;
+}
+.table-body{
+    overflow-y:auto;
+    overflow-x:hidden;
+    height: calc(100% - 47.2px);
+}
+table{
+    table-layout:fixed;
+}
+#elec_table td{
+    /* width:20%; */
+    white-space:normal;
+}
+.theadstyle thead tr th{
+    text-align:center;
+}
+.tabtrend1 {
+    width: auto;
+    background-color: #DCDCDC;
+    font-family: Arial;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: inherit;
+}
+.tabtrend1 td {
+    height: 22px;
+}
+.tabtrend1 thead tr, .tabtrend1 tbody.m td {
+    background-color: #F4F4F4;
+}
+.tabtrend1 tbody tr, .tabtrend1 tfoot tr {
+    background-color: #ffffff;
+}
+.blue_2{
+    line-height: 20px;
+    color: blue;
+    font-size: 14px;
+    font-weight: bold
+}
+#app2{
+    height:100%;
+    overflow-y: scroll;
+}
+.app2_title{
+    text-align: center;
+    color:red;
+    font-size: 14px;
+    height: 26px;
+    line-height: 26px;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+.app2_title span{
+    color:#000;
+    font-size: 8px;
+}
+_td table tbody td{
+    width: 24.8px;
+}
+
+
+.tabtrend115 {
+    width: 100%;
+    background-color: #DCDCDC;
+    font-family: Arial;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: inherit;
+}
+.tabtrend115 tbody tr, .tabtrend115 tfoot tr {
+    background-color: #ffffff;
+}
+.tabtrend115 thead tr, .tabtrend115 tbody.m td {
+    background-color: #F4F4F4;
+}
+.tabtrend115 td {
+    height: 22px;
+}
+
+.red{
+    background: url(red.jpg) no-repeat center center;
+    background-size:80% 80%;
+    color: #fff;
+    text-align: center;
+}
+.blue{
+    background: url(ball_blue_b.gif) no-repeat center center;
+    background-size:80% 80%;
+    color: #fff;
+    text-align: center;
+}
+.colorblue{
+    color: blue;
+}

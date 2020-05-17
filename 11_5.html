@@ -4,27 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./public.css">
-    <link rel="stylesheet" href="default.css">
-    <link rel="stylesheet" href="./style.css">
+    <title>北京11选5历史号码开奖展示</title>
+    <link rel="stylesheet" href="./css/public.css">
+    <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/115.css">
 </head>
 
 <body>
-    <div class="ad">
-        <img src="/b.jpg" alt="">
-    </div>
-    <div id="app">
-        <div class="header_top">
-            <div class="one">第<span style="font-weight: bold;">20050809</span>期</div>
-            <div class="two">北京11选5历史号码开奖展示</div>
-            <div class="tre">距离止售:<span style="font-weight: bold;">18:00</span></div>
+    <div id="app115" v-cloak style="height: 100%;width:100%">
+        <div class="ad">
+            <img src="./css/b.jpg" alt="">
         </div>
-        <div id="trend" style="height: calc(100% - 27px);">
-            <div id="elec_table">
-                <div class="table-head">
-                    <table cellpadding="0" cellspacing="1" class="tabtrend" id="tabtrend1";>
-                        <thead>
+        <div id="app">
+            <div class="header_top">
+                <div class="one">第<span style="font-weight: bold;" v-text="qi"></span>期</div>
+                <div class="two">北京11选5历史号码开奖展示</div>
+                <div class="tre">距离止售:<span style="font-weight: bold;">18:00</span></div>
+            </div>
+            <div id="trend" style="height: calc(100% - 27px);">
+                <div id="elec_table">
+                    <div class="table-head">
+                        <table cellpadding="0" cellspacing="1" class="tabtrend115" id="tabtrend1">
+                            <thead>
+                                <tr>
+                                    <td rowspan="2" width="15">期号</td>
+                                    <td rowspan="2" colspan="5">开奖顺序</td>
+                                    <td colspan="11">开奖号码</td>
+
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>11</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="table-body">
+                    <table cellpadding="0" cellspacing="1" class="tabtrend115" id="tabtrend">
+                        <thead style="visibility: collapse;">
                             <tr>
                                 <td rowspan="2" width="15">期号</td>
                                 <td rowspan="2" colspan="5">开奖顺序</td>
@@ -45,399 +73,143 @@
                                 <td>11</td>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr v-for="(item,index) in data" :key="index">
+                                <td>{{item.qh}}</td>
+                                <td  :class="{red:index == 0 || index == 1 || index == 2,colorblue:index == 3 || index == 4}" v-for="(val,index) in item.prizeNumber" :key="index">{{val}}</td>
+                                <td v-for="val in item.otherNumbers" :class="{ blue: val.display }">
+                                    {{val.display?val.value:val.forget}}
+                                </td>
+                            </tr>
+
+                        </tbody>
                     </table>
                 </div>
             </div>
-        <div class="table-body">
-            <!-- <div style="height: calc(100% - 47.2px);overflow-y: scroll;"> -->
-                <table cellpadding="0" cellspacing="1" class="tabtrend" id="tabtrend" >
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td class="hong">02</td>
-                            <td class="hong">07</td>
-                            <td class="hong">04</td>
-                            <td class="flanse">11</td>
-                            <td class="flanse">03</td>
-                            <td class="y">2</td>
-                            <td class="lan">2</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">5</td>
-                            <td class="y">3</td>
-                            <td class="lan">7</td>
-                            <td class="y">1</td>
-                            <td class="y">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td class="hong">09</td>
-                            <td class="hong">10</td>
-                            <td class="hong">02</td>
-                            <td class="flanse">01</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="lan">2</td>
-                            <td class="lan">3</td>
-                            <td class="y">1</td>
-                            <td class="y">6</td>
-                            <td class="y">4</td>
-                            <td class="y">1</td>
-                            <td class="y">2</td>
-                            <td class="lan">9</td>
-                            <td class="lan">10</td>
-                            <td class="y">1</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>14</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>15</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>16</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>17</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>18</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>19</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td class="hong">11</td>
-                            <td class="hong">01</td>
-                            <td class="hong">10</td>
-                            <td class="flanse">04</td>
-                            <td class="flanse">03</td>
-                            <td class="lan">1</td>
-                            <td class="y">1</td>
-                            <td class="lan">3</td>
-                            <td class="lan">4</td>
-                            <td class="y">7</td>
-                            <td class="y">5</td>
-                            <td class="y">2</td>
-                            <td class="y">3</td>
-                            <td class="y">1</td>
-                            <td class="lan">10</td>
-                            <td class="lan">11</td>
-                        </tr>
-                    </tbody>
-            </table>
-        </div>
         </div>
     </div>
 </body>
-<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+<script src="./js/vue.min.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: "#app115",
+        data() {
+            return {
+                qi: "",
+                data: [],
+                number: {
+                    qh: 0,
+                    prizeNumber: 0,
+                    otherNumbers: []
+                }
+            }
+        },
+        created() {
+            this.initPreData();
+            this.getData();
+        },
+        methods: {
+            initPreData() {
+                for (let i = 1; i < 12; i++) {
+                    this.number.otherNumbers.push({
+                        value: i,
+                        forget: 0,
+                        display: false
+                    });
+                }
+            },
+            getData() {
+                that = this;
+                $.ajax({
+                    url: "http://139.9.248.208:9090/openapi/winaward/11x5",
+                    dataType: "json",
+                    success: function (res) {
+                        that.dealData(res.data);
+                        //that.sort(res.data);
+                    }
+                })
+            },
+            dealData(data) {
+                let that = this;
+                this.qi = Number(data[0].qh) + 1;
+                this.data = data.map((item, index) => {
+                    that.number.qh = item.qh.slice(-2);
+                    let allPrizeNumbers = item.numbers.split(',')
+                    that.number.prizeNumber = allPrizeNumbers;
+                    allPrizeNumbers.forEach(prizeNumber => {
+                        for (let i = 0; i < that.number.otherNumbers.length; i++) {
+                            let otherNumber = that.number.otherNumbers[i];
+                            if (otherNumber.value == prizeNumber) {
+                                otherNumber.display = true;
+                                otherNumber.forget = 0;
+                                break;
+                            }
+                        }
+                    });
+                    that.number.otherNumbers.forEach(otherNumber => {
+                        if (!otherNumber.display) {
+                            otherNumber.forget += 1;
+                        }
+                    })
+                    let cloneData = that.deepClone(this.number);
+                    that.number.otherNumbers.forEach(otherNumber => {
+                        if (otherNumber.display) {
+                            otherNumber.display = false;
+                        }
+                    })
+                    return cloneData
+                });
+            },
+            deepClone(obj) {
+                if (typeof obj == null || typeof obj != 'object') return obj;
+                let res = null;
+                if (typeof obj === 'object') {
+                    res = {};
+                    for (let key in obj) {
+                        res[key] = this.deepClone(obj[key]);
+                    }
+                } else if (Array.isArray(obj)) {
+                    res = [];
+                    for (let i = 0; i < obj.length; i++) {
+                        res.push(this.deepClone(obj[i]));
+                    }
+                } else {
+                    res = obj;
+                }
+                return res;
+            },
+            sort(data){
+                let ary =[],lineAry=[];
+                data.forEach((item,index) => { //将每期中奖号码有小到大排序
+                    let numbers = item.numbers.split(',');
+                    numbers = numbers.map(item => Number(item));
+                    ary.push(numbers.sort((a,b)=>a-b))
+                });
+                ary.forEach((item,index) =>{
+                    let arr = this.lianxu(item);
+                    if(arr.length === 5){
+                        lineAry.push(item);
+                    }else{
+                        for(let i = 0;i<arr.length;i++){
+                            if(arr[i].length > 2){
+                            }
+                        }
+                    }
+                });
+            },
+            lianxu(arr){
+                var result = [],
+                    i = 0;
+                result[i] = [arr[0]];
+                arr.reduce(function(prev, cur){
+                    cur-prev === 1 ? result[i].push(cur) : result[++i] = [cur];
+                    return cur;
+                });
+                return result;
+            }
+        }
+    });
+</script>
 
 </html>
