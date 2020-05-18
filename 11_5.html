@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/default.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/115.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-polyfill/6.26.0/polyfill.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
             <div class="header_top">
                 <div class="one">第<span style="font-weight: bold;" v-text="qi"></span>期</div>
                 <div class="two">北京11选5历史号码开奖展示</div>
-                <div class="tre">距离止售:<span style="font-weight: bold;">18:00</span></div>
+                <div class="tre">距离止售:<span style="font-weight: bold;">11:00</span></div>
             </div>
             <div id="trend" style="height: calc(100% - 27px);">
                 <div id="elec_table">
@@ -47,6 +48,16 @@
                                     <td>11</td>
                                 </tr>
                             </thead>
+                            <tbody style="visibility: collapse;">
+                                <tr v-for="(item,index) in data" :key="index">
+                                    <td>{{item.qh}}</td>
+                                    <td  :class="{red:index == 0 || index == 1 || index == 2,colorblue:index == 3 || index == 4}" v-for="(val,index) in item.prizeNumber" :key="index">{{val}}</td>
+                                    <td v-for="val in item.otherNumbers" :class="{ blue: val.display }">
+                                        {{val.display?val.value:val.forget}}
+                                    </td>
+                                </tr>
+    
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -74,10 +85,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item,index) in data" :key="index">
+                            <tr v-for="(item,index) in lastData" :key="index">
                                 <td>{{item.qh}}</td>
                                 <td  :class="{red:index == 0 || index == 1 || index == 2,colorblue:index == 3 || index == 4}" v-for="(val,index) in item.prizeNumber" :key="index">{{val}}</td>
-                                <td v-for="val in item.otherNumbers" :class="{ blue: val.display }">
+                                <td v-for="val in item.otherNumbers" :class="{ blue: val.display && val.color === '',red: val.display?(val.color === 'red'?true:false):false }">
                                     {{val.display?val.value:val.forget}}
                                 </td>
                             </tr>
@@ -102,20 +113,28 @@
                     qh: 0,
                     prizeNumber: 0,
                     otherNumbers: []
-                }
+                },
+                colorData: {},
+                lastData:null
             }
         },
         created() {
             this.initPreData();
             this.getData();
         },
+        mounted(){
+            // setInterval( ()=>{
+            //     this.getData();
+            // }, 5000)
+        },
         methods: {
             initPreData() {
-                for (let i = 1; i < 12; i++) {
+                for (var i = 1; i < 12; i++) {
                     this.number.otherNumbers.push({
                         value: i,
                         forget: 0,
-                        display: false
+                        display: false,
+                        color:""
                     });
                 }
             },
@@ -126,20 +145,21 @@
                     dataType: "json",
                     success: function (res) {
                         that.dealData(res.data);
-                        //that.sort(res.data);
+                        that.colorData = that.sort(res.data);
+                        that.lastData = that.addcolor();
                     }
                 })
             },
             dealData(data) {
-                let that = this;
-                this.qi = Number(data[0].qh) + 1;
+                var that = this;
+                this.qi = Number(data[data.length - 1].qh) + 1;
                 this.data = data.map((item, index) => {
                     that.number.qh = item.qh.slice(-2);
-                    let allPrizeNumbers = item.numbers.split(',')
+                    var allPrizeNumbers = item.numbers.split(',')
                     that.number.prizeNumber = allPrizeNumbers;
                     allPrizeNumbers.forEach(prizeNumber => {
-                        for (let i = 0; i < that.number.otherNumbers.length; i++) {
-                            let otherNumber = that.number.otherNumbers[i];
+                        for (var i = 0; i < that.number.otherNumbers.length; i++) {
+                            var otherNumber = that.number.otherNumbers[i];
                             if (otherNumber.value == prizeNumber) {
                                 otherNumber.display = true;
                                 otherNumber.forget = 0;
@@ -152,7 +172,7 @@
                             otherNumber.forget += 1;
                         }
                     })
-                    let cloneData = that.deepClone(this.number);
+                    var cloneData = that.deepClone(this.number);
                     that.number.otherNumbers.forEach(otherNumber => {
                         if (otherNumber.display) {
                             otherNumber.display = false;
@@ -160,18 +180,20 @@
                     })
                     return cloneData
                 });
+                console.log(this.data);
+
             },
             deepClone(obj) {
                 if (typeof obj == null || typeof obj != 'object') return obj;
-                let res = null;
+                var res = null;
                 if (typeof obj === 'object') {
                     res = {};
-                    for (let key in obj) {
+                    for (var key in obj) {
                         res[key] = this.deepClone(obj[key]);
                     }
                 } else if (Array.isArray(obj)) {
                     res = [];
-                    for (let i = 0; i < obj.length; i++) {
+                    for (var i = 0; i < obj.length; i++) {
                         res.push(this.deepClone(obj[i]));
                     }
                 } else {
@@ -179,26 +201,50 @@
                 }
                 return res;
             },
+            addcolor(){
+                let datalist = this.data;
+                for(let index in this.colorData){
+                    let cur = this.colorData[index];
+                    console.log(index,cur);
+                    let dataItem = datalist[index].otherNumbers;
+                    for(let inde in dataItem){
+                        let curData = dataItem[inde];
+                        for(let i=0;i< cur.length;i++){
+                            if(curData.value == cur[i]){
+                                curData.color = "red";
+                            }
+                        }
+                    }
+
+                }
+                console.log("red",datalist);
+                return datalist;
+            },
             sort(data){
-                let ary =[],lineAry=[];
+                var ary =[],lineAry={};
                 data.forEach((item,index) => { //将每期中奖号码有小到大排序
-                    let numbers = item.numbers.split(',');
+                    var numbers = item.numbers.split(',');
                     numbers = numbers.map(item => Number(item));
                     ary.push(numbers.sort((a,b)=>a-b))
                 });
                 ary.forEach((item,index) =>{
-                    let arr = this.lianxu(item);
+                    let inde = index;
+                    var arr = this.lianxu(item);
                     if(arr.length === 5){
-                        lineAry.push(item);
+                        if(this.ou(arr) || this.ji(arr)){
+                            lineAry[inde] = arr;
+                        }
                     }else{
-                        for(let i = 0;i<arr.length;i++){
+                        for(var i = 0;i<arr.length;i++){
                             if(arr[i].length > 2){
+                                lineAry[inde] = arr[i];
                             }
                         }
                     }
                 });
+                return lineAry;
             },
-            lianxu(arr){
+            lianxu(arr){//获取连续的数字
                 var result = [],
                     i = 0;
                 result[i] = [arr[0]];
@@ -207,7 +253,18 @@
                     return cur;
                 });
                 return result;
+            },
+            ou(ary){//全部偶数
+                return ary.every(item =>{
+                    item[0]%2 === 0;
+                })
+            },
+            ji(ary){//全部奇数
+                return ary.every(item =>{
+                    item[0]%2 === 1;
+                })
             }
+
         }
     });
 </script>
