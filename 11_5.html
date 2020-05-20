@@ -10,44 +10,49 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/115.css">
 </head>
+
 <body style="-webkit-transform: rotate(270deg);
 -moz-transform: rotate(270deg);
 -o-transform: rotate(270deg);
 -ms-transform: rotate(270deg);
 transform: rotate(270deg); ">
-    <div id="app115" v-cloak >
+    <div id="app115" v-cloak>
         <div class="ad">
             <img src="./css/b.jpg" alt="">
         </div>
         <div id="app">
             <div class="header_top">
-                <div class="one">第<span style="font-weight: bold;" v-text="qi"></span>期</div>
+                <div class="one">第<span id="nextqi" style="font-weight: bold;" v-text="qi"></span>期</div>
                 <div class="two">北京11选5历史号码开奖展示</div>
                 <div class="tre">距离止售:<span id="newqi" style="font-weight: bold;">11:29</span></div>
             </div>
-            <div id="trend" style="height: calc(100% - 27px);">
+            <div id="trend">
                 <div id="elec_table">
                     <div class="table-body">
-                        <table cellpadding="0" cellspacing="1" class="tabtrend115" id="tabtrend">
+                        <table cellpadding="0"  border="1 solid red" class="tabtrend115" id="tabtrend">
                             <thead>
                                 <tr>
-                                    <td rowspan="2" width="15">期号</td>
-                                    <td rowspan="2" colspan="5">开奖顺序</td>
-                                    <td colspan="11">开奖号码</td>
-
+                                    <td class="yellow bor_right f20" rowspan="2" width="20">期号</td>
+                                    <td class="yellow bor_right f20" colspan="5">开奖顺序</td>
+                                    <td class="orange" colspan="11">开奖号码</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                    <td>6</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>11</td>
+                                    <td class="yellow">一</td>
+                                    <td class="yellow">二</td>
+                                    <td class="yellow">三</td>
+                                    <td class="yellow">四</td>
+                                    <td class="yellow bor_right">五</td>
+                                    <td class="orange">1</td>
+                                    <td class="orange">2</td>
+                                    <td class="orange">3</td>
+                                    <td class="orange">4</td>
+                                    <td class="orange">5</td>
+                                    <td class="orange">6</td>
+                                    <td class="orange">7</td>
+                                    <td class="orange">8</td>
+                                    <td class="orange">9</td>
+                                    <td class="orange">10</td>
+                                    <td class="orange">11</td>
                                 </tr>
                             </thead>
                             <tbody id="tobdd">
@@ -55,6 +60,9 @@ transform: rotate(270deg); ">
                         </table>
                     </div>
                 </div>
+            </div>
+            <div style="text-align: right;padding-top: 7px;">
+                本历史开奖号码仅供参考，开奖号码以终端开奖公告为准。
             </div>
         </div>
 </body>
@@ -71,19 +79,17 @@ transform: rotate(270deg); ">
         lastData = null;
     initPreData();
     getData();
-    // setInterval(function(){
-    //     getData()
-    // }, 5000);
-    var html = ""
+    
 
     function addhtml(list) {
+        var html = ""
         list.forEach(function (item, index) {
-            html += "<tr>" + "<td>" + item.qh + "</td>" +
+            html += "<tr>" + "<td class='f12 bor_right'>" + item.qh + "</td>" +
                 "<td class='red'>" + item.prizeNumber[0] + "</td>" +
                 "<td  class='red'>" + item.prizeNumber[1] + "</td>" +
                 "<td  class='red'>" + item.prizeNumber[2] + "</td>" +
                 "<td class='colorblue'>" + item.prizeNumber[3] + "</td>" +
-                "<td class='colorblue'>" + item.prizeNumber[4] + "</td>" +
+                "<td class='colorblue bor_right'>" + item.prizeNumber[4] + "</td>" +
                 "<td class=" + classVal(item.otherNumbers[0]) + " >" + show(item.otherNumbers[0]) + "</td>" +
                 "<td class=" + classVal(item.otherNumbers[1]) + " >" + show(item.otherNumbers[1]) + "</td>" +
                 "<td class=" + classVal(item.otherNumbers[2]) + " >" + show(item.otherNumbers[2]) + "</td>" +
@@ -120,15 +126,28 @@ transform: rotate(270deg); ">
             url: "http://139.9.248.208:9090/openapi/winaward/11x5",
             dataType: "json",
             success: function (res) {
-                $("#anc").text("ajaxajax");
                 dealData(res.data);
                 colorData = sort(res.data);
                 lastData = addcolor();
+                console.log(lastData);
+                lastData = quzero(lastData);
                 addhtml(lastData);
+                window.setTimeout(function(){
+                    //window.location.reload();
+                    getData()
+                }, 5000);
             }
         })
     };
-
+    function quzero(data){
+        for(var i = 0;i<data.length;i++){
+            var item = data[i].prizeNumber;
+            for(var j in item){
+                item[j] = Number(item[j])
+            }
+        }
+        return data;
+    };
     function initPreData() {
         for (var i = 1; i < 12; i++) {
             number.otherNumbers.push({
@@ -141,7 +160,9 @@ transform: rotate(270deg); ">
     };
 
     function dealData(data) {
+        data1 = [];
         qi = Number(data[data.length - 1].qh) + 1;
+        $('#nextqi').text(qi);
         for (var j = 0; j < data.length; j++) {
             var item = data[j];
             number.qh = item.qh.slice(-2);
