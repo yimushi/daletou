@@ -34,25 +34,25 @@ transform: rotate(270deg); ">
                                 <tr>
                                     <td class="yellow bor_right f20" rowspan="2" width="20">期号</td>
                                     <td class="yellow bor_right f20" colspan="5">开奖顺序</td>
-                                    <td class="orange" colspan="11">开奖号码</td>
+                                    <td class="orange" colspan="11" style="border-right: 1px solid #e48e36;border-top: 1px solid #e48e36;">开奖号码</td>
                                 </tr>
                                 <tr>
-                                    <td class="yellow">一</td>
-                                    <td class="yellow">二</td>
-                                    <td class="yellow">三</td>
-                                    <td class="yellow">四</td>
+                                    <td class="yellow bor-r">一</td>
+                                    <td class="yellow bor-r">二</td>
+                                    <td class="yellow bor-r">三</td>
+                                    <td class="yellow bor-r">四</td>
                                     <td class="yellow bor_right">五</td>
-                                    <td class="orange">1</td>
-                                    <td class="orange">2</td>
-                                    <td class="orange">3</td>
-                                    <td class="orange">4</td>
-                                    <td class="orange">5</td>
-                                    <td class="orange">6</td>
-                                    <td class="orange">7</td>
-                                    <td class="orange">8</td>
-                                    <td class="orange">9</td>
-                                    <td class="orange">10</td>
-                                    <td class="orange">11</td>
+                                    <td class="orange bor-r">1</td>
+                                    <td class="orange bor-r">2</td>
+                                    <td class="orange bor-r">3</td>
+                                    <td class="orange bor-r">4</td>
+                                    <td class="orange bor-r">5</td>
+                                    <td class="orange bor-r">6</td>
+                                    <td class="orange bor-r">7</td>
+                                    <td class="orange bor-r">8</td>
+                                    <td class="orange bor-r">9</td>
+                                    <td class="orange bor-r">10</td>
+                                    <td class="orange" style="border-right:1px solid #e48e36 ;">11</td>
                                 </tr>
                             </thead>
                             <tbody id="tobdd">
@@ -77,9 +77,10 @@ transform: rotate(270deg); ">
         },
         colorData = {},
         lastData = null;
+        orangeAry:[];
     initPreData();
     getData();
-    
+    countDown();
 
     function addhtml(list) {
         var html = ""
@@ -118,6 +119,9 @@ transform: rotate(270deg); ">
         if (val.display && val.color === "red") {
             str = 'red';
         }
+        if (val.display && val.color === "orange11") {
+            str = 'orange11';
+        }
         return str;
     }
 
@@ -129,7 +133,6 @@ transform: rotate(270deg); ">
                 dealData(res.data);
                 colorData = sort(res.data);
                 lastData = addcolor();
-                console.log(lastData);
                 lastData = quzero(lastData);
                 addhtml(lastData);
                 window.setTimeout(function(){
@@ -220,7 +223,6 @@ transform: rotate(270deg); ">
         var datalist = data1;
         for (var index in colorData) {
             var cur = colorData[index];
-            console.log(index, cur);
             var dataItem = datalist[index].otherNumbers;
             for (var inde in dataItem) {
                 var curData = dataItem[inde];
@@ -232,9 +234,15 @@ transform: rotate(270deg); ">
             }
 
         }
-        $("#number").text("0055" + number);
-
-        console.log("red", datalist);
+        for(var k=0;k<orangeAry.length;k++){
+            var indexOrange = orangeAry[k];
+            for(var key in datalist[indexOrange].otherNumbers){
+                var item = datalist[indexOrange].otherNumbers[key];
+                if(item.display){
+                    item.color = "orange11"
+                }
+            }
+        }
         return datalist;
     };
 
@@ -278,7 +286,12 @@ transform: rotate(270deg); ">
                 }
             }
         }
-
+        orangeAry = [];
+        for(var indexjiou in lineAry){
+            if(lineAry[indexjiou].length === 5){
+                orangeAry.push(indexjiou);
+            }
+        }
         return lineAry;
     };
 
@@ -313,6 +326,61 @@ transform: rotate(270deg); ">
             }
         }
         return flag;
+    };
+    function addZero(i) {
+               return i < 10 ? "0" + i: i + "";
+    }
+    function countDown() {
+        var nowtime = new Date();
+        var nowMinute = nowtime.getMinutes();
+        var year = nowtime.getFullYear() + "";
+        var month = nowtime.getMonth() + 1 + "";
+        var day = nowtime.getDate() + "";
+        var hour = nowtime.getHours() + "";
+        if(nowMinute < 19){
+            nowMinute = "18";
+        }else if(nowMinute < 39){
+            nowMinute = "38";
+        }else if(nowMinute < 59){
+            nowMinute = "58";
+        }
+        var dat = year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":" + addZero(nowMinute) + ":55"
+        endtime = new Date(dat);
+        var lefttime = parseInt((endtime.getTime() - nowtime.getTime()) / 1000);
+        var d = parseInt(lefttime / (24*60*60))
+        var h = parseInt(lefttime / (60 * 60) % 24);
+        var m = parseInt(lefttime / 60 % 60);
+        var s = parseInt(lefttime % 60);
+        d = addZero(d)
+        h = addZero(h);
+        m = addZero(m);
+        s = addZero(s);
+        max19 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":20:00");
+        min19 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":18:55");
+        max39 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":40:00");
+        min39 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":38:55");
+        max59 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(Number(hour) + 1) + ":00:00");
+        console.log("5959",max59)
+        min59 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":58:55");
+        if(nowtime.getTime() >  min19.getTime() && nowtime.getTime() <  max19.getTime()){
+            $("#newqi").html("本期停止销售");
+        }else if(nowtime.getTime() >  min39.getTime() && nowtime.getTime() <  max39.getTime()){
+            $("#newqi").html("本期停止销售");
+        }else if(nowtime.getTime() >  min59.getTime() && nowtime.getTime() <  max59.getTime()){
+            $("#newqi").html("本期停止销售");
+        }else{
+            console.log("min59",min59.getTime());
+            console.log("min59",max59.getTime());
+            console.log("nowtime",nowtime.getTime());
+
+            $("#newqi").html(m + ":" + s);
+           // document.querySelector("#newqi").innerHTML = `${m}:${s}`;
+        }
+        // if (lefttime <= 0) {
+        //     document.querySelector("#newqi").innerHTML = "正在开奖";
+        //     return;
+        // }
+        setTimeout(countDown, 1000);
     };
 </script>
 

@@ -52,7 +52,8 @@
     overflow-y:auto;
     overflow-x:hidden;
     /* height: calc(100% - 47.2px); */
-    border: 2px solid #000000;
+    border: 1px solid #000000;
+    border-bottom: 2px solid #000;
 }
 table{
     table-layout:fixed;
@@ -122,6 +123,12 @@ _td table tbody td{
     color: #fff;
     text-align: center;
 }
+.orange11{
+    background: url(orange.jpg) no-repeat center center;
+    background-size:80% 80%;
+    color: #fff;
+    text-align: center;
+}
 .colorblue{
     color: blue;
 }
@@ -132,9 +139,16 @@ _td table tbody td{
     background-color: #e48e36;
 }
 .bor_right{
-    border-right: 2px solid #000;
+    border-right: 1px solid #000;
 }
 table {
      border-spacing: 0px; 
-     border: 1px solid #eee;
+      border: 1px solid #eee; 
+}
+table thead{
+    border-bottom: 1px solid #000;
+    /* border-right: 1px solid #000; */
+}
+.bor-r{
+    border-right: 1px solid #000;
 }

@@ -1,18 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    测试测试测试
-    <div id="abc">
+1 <html>
+    2 <head>
+    3 <meta charset="UTF-8">
+    4 <title>简单时长倒计时</title>
+    5 
+   22 </head>
+   23 <body>
+   24   <p class="count"></p>
+   <script>
+       window.onload = function () {
+           countDown();
+           function addZero(i) {
+               return i < 10 ? "0" + i: i + "";
+           }
+           function countDown() {
+               var nowtime = new Date();
+               var nowMinute = nowtime.getMinutes();
+               var year = nowtime.getFullYear() + "";
+               var month = nowtime.getMonth() + 1 + "";
+               var day = nowtime.getDate() + "";
+               var hour = nowtime.getHours() + "";
+               if(nowMinute < 19){
+                    nowMinute = "19";
+               }else if(nowMinute < 39){
+                   nowMinute = "39";
+               }else if(nowMinute < 59){
+                   nowMinute = "59";
+               }
+               var dat = year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":" + addZero(nowMinute) + ":30"
+               endtime = new Date(dat);
+               var lefttime = parseInt((endtime.getTime() - nowtime.getTime()) / 1000);
+               var d = parseInt(lefttime / (24*60*60))
+               var h = parseInt(lefttime / (60 * 60) % 24);
+               var m = parseInt(lefttime / 60 % 60);
+               var s = parseInt(lefttime % 60);
+               d = addZero(d)
+               h = addZero(h);
+               m = addZero(m);
+               s = addZero(s);
+               document.querySelector(".count").innerHTML = `${m}:${s}`;
+               if (lefttime <= 0) {
+                   document.querySelector(".count").innerHTML = "正在开奖";
+                   return;
+               }
+               setTimeout(countDown, 1000);
+             }
+         }
 
-    </div>
-</body>
-<script src="../js/zepto.min.js"></script>
-<script type="text/javascript">
-    $("#abc").html("lfsdkdfs");
-</script>
-</html>
+        //  var endtime = new Date("2020/05/21,21:59:30");
+        //        var lefttime = parseInt((endtime.getTime() - nowtime.getTime()) / 1000);
+        //        var d = parseInt(lefttime / (24*60*60))
+        //        var h = parseInt(lefttime / (60 * 60) % 24);
+        //        var m = parseInt(lefttime / 60 % 60);
+        //        var s = parseInt(lefttime % 60);
+        //        d = addZero(d)
+        //        h = addZero(h);
+        //        m = addZero(m);
+        //        s = addZero(s);
+        //        document.querySelector(".count").innerHTML = `${m}:${s}`;
+        //        if (lefttime <= 0) {
+        //            document.querySelector(".count").innerHTML = "正在开奖";
+        //            return;
+        //        }
+        //        setTimeout(countDown, 1000);
+     </script>
+   26 </body>
+   27 </html>
