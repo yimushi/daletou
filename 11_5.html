@@ -337,16 +337,30 @@ transform: rotate(270deg); ">
         var month = nowtime.getMonth() + 1 + "";
         var day = nowtime.getDate() + "";
         var hour = nowtime.getHours() + "";
-        if(nowMinute < 19){
-            nowMinute = "18";
-        }else if(nowMinute < 39){
-            nowMinute = "38";
-        }else if(nowMinute < 59){
-            nowMinute = "58";
+        var seconds = nowtime.getSeconds();
+        console.log(nowtime.getTime())
+        if(nowtime.getTime() < new Date(year +"/"+month+"/"+day+" "+ hour +":20:00") && nowtime.getTime() > new Date(year +"/"+month+"/"+day+" "+ hour +":01:05").getTime()){
+            nowMinute = "19";
+        }else if(nowtime.getTime() < new Date(year +"/"+month+"/"+day+" "+ hour +":40:00") && nowtime.getTime() > new Date(year +"/"+month+"/"+day+" "+ hour +":21:05").getTime()){
+            nowMinute = "39";
+        }else if(nowtime.getTime() < new Date(year +"/"+month+"/"+day+" "+ (Number(hour)+1) +":00:00").getTime() && nowtime.getTime() > new Date(year +"/"+month+"/"+day+" "+ hour +":41:05").getTime()){
+            nowMinute = "59";
         }
-        var dat = year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":" + addZero(nowMinute) + ":55"
+        var dat = null;
+        if(nowMinute === "59"){
+             dat = year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(Number(hour)+1) + ":" + "00:00"
+
+        }else{
+            dat = year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":" + addZero(Number(nowMinute) + 1) + ":00";
+        }
+
         endtime = new Date(dat);
+        //18.55倒计时
+        //end18 = new Date("2020/05/21,21:59:00");
+        //begin18 = new Date("2020/05/21,21:50:05");
         var lefttime = parseInt((endtime.getTime() - nowtime.getTime()) / 1000);
+        //var lefttime = parseInt((end18.getTime() - begin18.getTime()) / 1000);
+
         var d = parseInt(lefttime / (24*60*60))
         var h = parseInt(lefttime / (60 * 60) % 24);
         var m = parseInt(lefttime / 60 % 60);
@@ -355,13 +369,23 @@ transform: rotate(270deg); ">
         h = addZero(h);
         m = addZero(m);
         s = addZero(s);
-        max19 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":20:00");
-        min19 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":18:55");
-        max39 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":40:00");
-        min39 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":38:55");
-        max59 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(Number(hour) + 1) + ":00:00");
-        console.log("5959",max59)
-        min59 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":58:55");
+
+        
+        max19 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":21:05");
+        min19 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":20:00");
+        max39 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":41:05");
+        min39 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(hour) + ":40:00");
+        max59 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(Number(hour) + 1) + ":01:05");
+        
+        min59 = new Date(year + "/" + addZero(month) + "/" + addZero(day) + "," + addZero(Number(hour) + 1) + ":00:00");
+        console.log("=======================")
+        console.log("=======================")
+
+        console.log("现在的时间",new Date())
+        console.log("结束的时间",endtime)
+
+        console.log("min39",min39);
+            console.log("max39",max39);
         if(nowtime.getTime() >  min19.getTime() && nowtime.getTime() <  max19.getTime()){
             $("#newqi").html("本期停止销售");
         }else if(nowtime.getTime() >  min39.getTime() && nowtime.getTime() <  max39.getTime()){
@@ -369,10 +393,6 @@ transform: rotate(270deg); ">
         }else if(nowtime.getTime() >  min59.getTime() && nowtime.getTime() <  max59.getTime()){
             $("#newqi").html("本期停止销售");
         }else{
-            console.log("min59",min59.getTime());
-            console.log("min59",max59.getTime());
-            console.log("nowtime",nowtime.getTime());
-
             $("#newqi").html(m + ":" + s);
            // document.querySelector("#newqi").innerHTML = `${m}:${s}`;
         }
