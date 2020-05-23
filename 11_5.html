@@ -86,9 +86,9 @@ transform: rotate(270deg); ">
         var html = ""
         list.forEach(function (item, index) {
             html += "<tr>" + "<td class='f12 bor_right'>" + item.qh + "</td>" +
-                "<td class='red'>" + item.prizeNumber[0] + "</td>" +
-                "<td  class='red'>" + item.prizeNumber[1] + "</td>" +
-                "<td  class='red'>" + item.prizeNumber[2] + "</td>" +
+                "<td class= h" + item.prizeNumber[0] + "></td>" +
+                "<td class= h" + item.prizeNumber[1] + "></td>" +
+                "<td class= h" + item.prizeNumber[2] + "></td>" +
                 "<td class='colorblue'>" + item.prizeNumber[3] + "</td>" +
                 "<td class='colorblue bor_right'>" + item.prizeNumber[4] + "</td>" +
                 "<td class=" + classVal(item.otherNumbers[0]) + " >" + show(item.otherNumbers[0]) + "</td>" +
@@ -110,17 +110,16 @@ transform: rotate(270deg); ">
     function show(val) {
         return val.display ? val.value : val.forget;
     }
-
     function classVal(val) {
         var str = "";
         if (val.display && val.color === "") {
-            str = "blue"
+            str = "'" + 'f0 b'+ val.value + "'";
         }
         if (val.display && val.color === "red") {
-            str = 'red';
+            str = "'" + 'f0 h'+ val.value + "'";
         }
         if (val.display && val.color === "orange11") {
-            str = 'orange11';
+            str = "'" + 'f0 o'+ val.value + "'";
         }
         return str;
     }
@@ -136,7 +135,6 @@ transform: rotate(270deg); ">
                 lastData = quzero(lastData);
                 addhtml(lastData);
                 window.setTimeout(function(){
-                    //window.location.reload();
                     getData()
                 }, 5000);
             }

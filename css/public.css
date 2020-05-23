@@ -9,6 +9,7 @@ a:hover{color:#ff3300;text-decoration: underline;}
 :focus{ outline: 0;}
 b,label,span,i,em{display:inline-block;*display:inline;*zoom:1;}
 .w1024 {width:1024px;}
+.f0{font-size: 0px;}
 .f12{ font-size:12px;}
 .f13{ font-size:13px;}
 .f14{ font-size:14px;}
