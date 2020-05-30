@@ -1,0 +1,80 @@
+body{
+    font-size: 10px;
+}
+.tabtrend1{
+    width: 100%;
+}
+.redhong{
+    line-height: 20px;
+    color: red;
+    font-size: 16px;
+    position: relative;
+}
+#app3{
+    width: 720px;
+    height: 1280px;
+    position: relative;
+    left: 560px;
+    box-sizing:border-box;
+    width: 720px;
+    padding: 10px;
+    background-color: #d2d8b2;
+}
+#tabtrend11 thead{
+    font-size: 14px;
+}
+.dblue{
+    background-color: rgb(158,185,191,0.6);
+    position: relative;
+}
+.lan{
+    color: blue;
+    font-size: 16px;
+}
+.black{
+    color: black;
+    font-size: 16px;
+    position: relative;
+}
+.san{
+    background: url(../image/k3/san.png) no-repeat center center;
+    background-size:80% 80%;
+    background-color: rgb(158,185,191,0.6);
+
+}
+.er{
+    background: url(../image/k3/er.png) no-repeat center center;
+    background-size:80% 80%;
+    background-color: rgb(158,185,191,0.6);
+
+}
+@font-face {
+    font-family: 'iconfont';
+    src: url('./font/iconfont.eot');
+    src: url('./font/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('./font/iconfont.woff2') format('woff2'),
+        url('./font/iconfont.woff') format('woff'),
+        url('./font/iconfont.ttf') format('truetype'),
+        url('./font/iconfont.svg#iconfont') format('svg');
+  }
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 8px;
+    font-style: normal;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .pos{
+    position: absolute;
+    top: -20%;
+    left: 50%;
+  }
+  .adk3{
+    width: 720px;
+    height: 735px
+  }
+  .adk3 img{
+      width: 100%;
+      height: 100%;
+  }
