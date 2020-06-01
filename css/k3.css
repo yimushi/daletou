@@ -1,8 +1,11 @@
 body{
-    font-size: 10px;
+    font-size: 12px;
 }
 .tabtrend1{
     width: 100%;
+}
+.tabtrend1 td{
+    height: 38px;
 }
 .redhong{
     line-height: 20px;
@@ -21,7 +24,7 @@ body{
     background-color: #d2d8b2;
 }
 #tabtrend11 thead{
-    font-size: 14px;
+    font-size: 16px;
 }
 .dblue{
     background-color: rgb(158,185,191,0.6);
@@ -72,7 +75,7 @@ body{
   }
   .adk3{
     width: 720px;
-    height: 735px
+    height: 380px
   }
   .adk3 img{
       width: 100%;
