@@ -1,5 +1,6 @@
 body{
     font-size: 12px;
+    font-weight: 700;
 }
 .tabtrend1{
     width: 100%;
@@ -10,7 +11,7 @@ body{
 .redhong{
     line-height: 20px;
     color: red;
-    font-size: 16px;
+    font-size: 22px;
     position: relative;
 }
 #app3{
@@ -22,14 +23,22 @@ body{
     width: 720px;
     padding: 10px;
     background-color: #d2d8b2;
+    overflow: hidden;
 }
 #tabtrend11 thead{
     font-size: 16px;
 }
+#tabtrend11 thead td{
+    border: 1px solid #000;
+}
 .dblue{
-    background-color: rgb(158,185,191,0.6);
+    background-color: #9EB9BF;
     position: relative;
 }
+.borr{
+    border-right: 1px solid #111;
+}
+
 .lan{
     color: blue;
     font-size: 16px;
@@ -42,13 +51,13 @@ body{
 .san{
     background: url(../image/k3/san.png) no-repeat center center;
     background-size:80% 80%;
-    background-color: rgb(158,185,191,0.6);
+    background-color: #9EB9BF;
 
 }
 .er{
     background: url(../image/k3/er.png) no-repeat center center;
     background-size:80% 80%;
-    background-color: rgb(158,185,191,0.6);
+    background-color: #9EB9BF;
 
 }
 @font-face {
@@ -70,14 +79,94 @@ body{
   }
   .pos{
     position: absolute;
-    top: -20%;
-    left: 50%;
+    top: 0;
+    left: 65%;
   }
   .adk3{
-    width: 720px;
+    width: 100%;
     height: 380px
   }
   .adk3 img{
       width: 100%;
       height: 100%;
   }
+  .bc0{background:#9EB9BF url(../image/k3/b0.png) no-repeat center;}
+  .bc1{background:#9EB9BF url(../image/k3/b1.png) no-repeat center;}
+  .bc2{background:#9EB9BF url(../image/k3/b2.png) no-repeat center;}
+  .bc3{background:#9EB9BF url(../image/k3/b3.png) no-repeat center;}
+  .bc4{background:#9EB9BF url(../image/k3/b4.png) no-repeat center;}
+  .bc5{background:#9EB9BF url(../image/k3/b5.png) no-repeat center;}
+  .bc6{background:#9EB9BF url(../image/k3/b6.png) no-repeat center;}
+  .b0{background:url(../image/k3/b0.png) no-repeat center;}
+  .b1{background:url(../image/k3/b1.png) no-repeat center;}
+  .b2{background:url(../image/k3/b2.png) no-repeat center;}
+  .b3{background:url(../image/k3/b3.png) no-repeat center;}
+  .b4{background:url(../image/k3/b4.png) no-repeat center;}
+  .b5{background:url(../image/k3/b5.png) no-repeat center;}
+  .b6{background:url(../image/k3/b6.png) no-repeat center;}
+  .b7{background:url(../image/k3/b7.png) no-repeat center;}
+  .b8{background:url(../image/k3/b8.png) no-repeat center;}
+  .b9{background:url(../image/k3/b9.png) no-repeat center;}
+  .b10{background:url(../image/k3/b10.png) no-repeat center;}
+  .b11{background:url(../image/k3/b11.png) no-repeat center;}
+  .b12{background:url(../image/k3/b12.png) no-repeat center;}
+  .b13{background:url(../image/k3/b13.png) no-repeat center;}
+  .b14{background:url(../image/k3/b14.png) no-repeat center;}
+  .b15{background:url(../image/k3/b15.png) no-repeat center;}
+  .b16{background:url(../image/k3/b16.png) no-repeat center;}
+  .b17{background:url(../image/k3/b17.png) no-repeat center;}
+  .b18{background:url(../image/k3/b18.png) no-repeat center;}
+
+  .hongc0{background: #9eb9bf url(../image/k3/hong0.png) no-repeat center;}
+  .hongc1{background: #9eb9bf url(../image/k3/hong1.png) no-repeat center;}
+  .hongc2{background: #9eb9bf url(../image/k3/hong2.png) no-repeat center;}
+  .hongc3{background: #9eb9bf url(../image/k3/hong3.png) no-repeat center;}
+  .hongc4{background: #9eb9bf url(../image/k3/hong4.png) no-repeat center;}
+  .hongc5{background: #9eb9bf url(../image/k3/hong5.png) no-repeat center;}
+  .hongc6{background: #9eb9bf url(../image/k3/hong6.png) no-repeat center;}
+  .hong0{background:url(../image/k3/hong0.png) no-repeat center;}
+  .hong1{background:url(../image/k3/hong1.png) no-repeat center;}
+  .hong2{background:url(../image/k3/hong2.png) no-repeat center;}
+  .hong3{background:url(../image/k3/hong3.png) no-repeat center;}
+  .hong4{background:url(../image/k3/hong4.png) no-repeat center;}
+  .hong5{background:url(../image/k3/hong5.png) no-repeat center;}
+  .hong6{background:url(../image/k3/hong6.png) no-repeat center;}
+  .hong7{background:url(../image/k3/hong7.png) no-repeat center;}
+  .hong8{background:url(../image/k3/hong8.png) no-repeat center;}
+  .hong9{background:url(../image/k3/hong9.png) no-repeat center;}
+  .hong10{background:url(../image/k3/hong10.png) no-repeat center;}
+  .hong11{background:url(../image/k3/hong11.png) no-repeat center;}
+  .hong12{background:url(../image/k3/hong12.png) no-repeat center;}
+  .hong13{background:url(../image/k3/hong13.png) no-repeat center;}
+  .hong14{background:url(../image/k3/hong14.png) no-repeat center;}
+  .hong15{background:url(../image/k3/hong15.png) no-repeat center;}
+  .hong16{background:url(../image/k3/hong16.png) no-repeat center;}
+  .hong17{background:url(../image/k3/hong17.png) no-repeat center;}
+  .hong18{background:url(../image/k3/hong18.png) no-repeat center;}
+
+  .lanc0{background: #9eb9bf url(../image/k3/lan0.png) no-repeat center;}
+  .lanc1{background: #9eb9bf url(../image/k3/lan1.png) no-repeat center;}
+  .lanc2{background: #9eb9bf url(../image/k3/lan2.png) no-repeat center;}
+  .lanc3{background: #9eb9bf url(../image/k3/lan3.png) no-repeat center;}
+  .lanc4{background: #9eb9bf url(../image/k3/lan4.png) no-repeat center;}
+  .lanc5{background: #9eb9bf url(../image/k3/lan5.png) no-repeat center;}
+  .lanc6{background: #9eb9bf url(../image/k3/lan6.png) no-repeat center;}
+  .lan0{background:url(../image/k3/lan0.png) no-repeat center;}
+  .lan1{background:url(../image/k3/lan1.png) no-repeat center;}
+  .lan2{background:url(../image/k3/lan2.png) no-repeat center;}
+  .lan3{background:url(../image/k3/lan3.png) no-repeat center;}
+  .lan4{background:url(../image/k3/lan4.png) no-repeat center;}
+  .lan5{background:url(../image/k3/lan5.png) no-repeat center;}
+  .lan6{background:url(../image/k3/lan6.png) no-repeat center;}
+  .lan7{background:url(../image/k3/lan7.png) no-repeat center;}
+  .lan8{background:url(../image/k3/lan8.png) no-repeat center;}
+  .lan9{background:url(../image/k3/lan9.png) no-repeat center;}
+  .lan10{background:url(../image/k3/lan10.png) no-repeat center;}
+  .lan11{background:url(../image/k3/lan11.png) no-repeat center;}
+  .lan12{background:url(../image/k3/lan12.png) no-repeat center;}
+  .lan13{background:url(../image/k3/lan13.png) no-repeat center;}
+  .lan14{background:url(../image/k3/lan14.png) no-repeat center;}
+  .lan15{background:url(../image/k3/lan15.png) no-repeat center;}
+  .lan16{background:url(../image/k3/lan16.png) no-repeat center;}
+  .lan17{background:url(../image/k3/lan17.png) no-repeat center;}
+  .lan18{background:url(../image/k3/lan18.png) no-repeat center;}

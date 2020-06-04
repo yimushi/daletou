@@ -23,7 +23,7 @@
         <div id="trend" style="width: 100%;">
             <div id="elec_table">
                 <div class="table-head">
-                    <table cellpadding="0" cellspacing="1" class="tabtrend1" id="tabtrend11";style="width:100%" >
+                    <table cellpadding="0" style="border-collapse:collapse" cellspacing="1" class="tabtrend1" id="tabtrend11";style="width:100%" >
                         <thead>
                             <tr>
                                 <td rowspan="2" width="15">期号</td>
@@ -66,7 +66,7 @@
                                 <td class="dblue">5</td>
                             </tr>
                         </thead>
-                        <tbody id="tobdd">                
+                        <tbody id="tobdd" style="border: 1px solid #000;">                
                         </tbody>
                     </table>
                 </div>
@@ -76,28 +76,28 @@
 </body>
 <script src="./js/zepto.min.js"></script>
 <script type="text/javascript">
-    var tableData=[
-        {qh: "2020052638", numbers: "2,6,4"},
-        {qh: "2020052639", numbers: "1,6,4"},
-        {qh: "2020052640", numbers: "3,6,5"},
-        {qh: "2020052641", numbers: "2,6,6"},
-        {qh: "2020052642", numbers: "2,5,3"},
-        {qh: "2020052643", numbers: "5,4,2"},
-        {qh: "2020052644", numbers: "5,6,5"},
-        {qh: "2020052645", numbers: "2,3,4"},
-        {qh: "2020052646", numbers: "4,4,4"},
-        {qh: "2020052647", numbers: "1,1,2"},
-        {qh: "2020052648", numbers: "6,4,3"},
-        {qh: "2020052649", numbers: "2,5,4"},
-        {qh: "2020052650", numbers: "2,2,2"},
-        {qh: "2020052651", numbers: "2,5,5"},
-        {qh: "2020052652", numbers: "2,2,4"},
-        {qh: "2020052653", numbers: "6,1,4"},
-        {qh: "2020052654", numbers: "3,6,4"},
-        {qh: "2020052655", numbers: "5,4,6"},
-        {qh: "2020052656", numbers: "2,2,3"},
-        {qh: "2020052657", numbers: "5,1,4"}
-        ]
+    // var tableData=[
+    //     {qh: "2020052638", numbers: "2,6,4"},
+    //     {qh: "2020052639", numbers: "1,6,4"},
+    //     {qh: "2020052640", numbers: "3,6,5"},
+    //     {qh: "2020052641", numbers: "2,6,6"},
+    //     {qh: "2020052642", numbers: "2,5,3"},
+    //     {qh: "2020052643", numbers: "5,4,2"},
+    //     {qh: "2020052644", numbers: "5,6,5"},
+    //     {qh: "2020052645", numbers: "2,3,4"},
+    //     {qh: "2020052646", numbers: "4,4,4"},
+    //     {qh: "2020052647", numbers: "1,1,2"},
+    //     {qh: "2020052648", numbers: "6,4,3"},
+    //     {qh: "2020052649", numbers: "2,5,4"},
+    //     {qh: "2020052650", numbers: "2,2,2"},
+    //     {qh: "2020052651", numbers: "2,5,5"},
+    //     {qh: "2020052652", numbers: "2,2,4"},
+    //     {qh: "2020052653", numbers: "6,1,4"},
+    //     {qh: "2020052654", numbers: "3,6,4"},
+    //     {qh: "2020052655", numbers: "5,4,6"},
+    //     {qh: "2020052656", numbers: "2,2,3"},
+    //     {qh: "2020052657", numbers: "5,1,4"}
+    //     ]
     getData();    
     function getData() {
         $.ajax({
@@ -110,57 +110,78 @@
                 var dvadata = dealdvaluen(disData);
                 var sumdata = dealsum(dvadata);
                 addhtml(sumdata);
-                window.setTimeout(function(){
-                    getData()
-                }, 5000);
+                // window.setTimeout(function(){
+                //     getData()
+                // }, 5000);
             }
         })
     };    
     function addhtml(list) {
         var html = ""
         list.forEach(function (item, index) {console.log(item)
-            var se = ""
+            var se = "hong"
             if(item.winning[0] === item.winning[2] && item.winning[1] === item.winning[2]){
-                se = ' lan'
+                se = 'lan'
             }else if(item.winning[0] != item.winning[2] && item.winning[1] != item.winning[2] && item.winning[0] != item.winning[1]){
-                se = ' black'
+                se = 'b'
             }
             console.log(se)
             html += "<tr>" + "<td>" + item.qh +"</td>" +
-                "<td class= 'redhong"+ se +"'>" + item.winning[0] + "</td>" +
-                "<td class= 'redhong"+ se +"'>" + item.winning[1] + "</td>" +
-                "<td class= 'redhong"+ se +"'>" + item.winning[2] + "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.distribution[0]) +showspan(item.distribution[0])+ "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.distribution[1]) +showspan(item.distribution[1])+ "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.distribution[2]) +showspan(item.distribution[2])+ "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.distribution[3]) +showspan(item.distribution[3])+ "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.distribution[4]) +showspan(item.distribution[4])+ "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.distribution[5]) +showspan(item.distribution[5])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[0])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[1])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[2])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[3])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[4])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[5])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[6])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[7])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[8])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[9])+ "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[10]) + "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[11]) + "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[12]) + "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[13]) + "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[14]) + "</td>" +
-                "<td class= 'redhong" + se +"'>" + show(item.sumvalue[15]) + "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.dvalue[0]) + "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.dvalue[1]) + "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.dvalue[2]) + "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.dvalue[3]) + "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.dvalue[4]) + "</td>" +
-                "<td class= 'redhong dblue" + se +"'>" + show(item.dvalue[5]) + "</td>" +
-                "<tr>";
+                "<td class= '"+ classValue1(item.winning[0],se) + "'></td>" +
+                "<td class= '"+ classValue1(item.winning[1],se) + "'></td>" +
+                "<td class= '"+ classValue1(item.winning[2],se) + " borr'></td>" +
+                "<td class= '"+ classValue2(item.distribution[0],se) + " dblue" + "'>" + showspan(item.distribution[0])+ "</td>" +
+                "<td class= '"+ classValue2(item.distribution[1],se) + " dblue" + "'>" + showspan(item.distribution[1])+ "</td>" +
+                "<td class= '"+ classValue2(item.distribution[2],se) + " dblue" + "'>" + showspan(item.distribution[2])+ "</td>" +
+                "<td class= '"+ classValue2(item.distribution[3],se) + " dblue" + "'>" + showspan(item.distribution[3])+ "</td>" +
+                "<td class= '"+ classValue2(item.distribution[4],se) + " dblue" + "'>" + showspan(item.distribution[4])+ "</td>" +
+                "<td class= '"+ classValue2(item.distribution[5],se) + " dblue borr" + "'>" + showspan(item.distribution[5])+ "</td>" +
+                "<td class= '"+ classValue3(item.sumvalue[0],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[1],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[2],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[3],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[4],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[5],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[6],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[7],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[8],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[9],se) + "'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[10],se) +"'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[11],se) +"'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[12],se) +"'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[13],se) +"'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[14],se) +"'></td>" +
+                "<td class= '"+ classValue3(item.sumvalue[15],se) +"borr'></td>" +
+                "<td class= '"+ classValue4(item.dvalue[0],se) + " dblue'></td>" +
+                "<td class= '"+ classValue4(item.dvalue[1],se) + " dblue'></td>" +
+                "<td class= '"+ classValue4(item.dvalue[2],se) + " dblue'></td>" +
+                "<td class= '"+ classValue4(item.dvalue[3],se) + " dblue'></td>" +
+                "<td class= '"+ classValue4(item.dvalue[4],se) + " dblue'></td>" +
+                "<td class= '"+ classValue4(item.dvalue[5],se) + " dblue'></td>" +
+                "</tr>";
         });
         $("#tobdd").html(html)
+    }
+    function classValue1(data,color){
+        return color + data;
+    }
+    function classValue2(data,color){
+        if(data.display){
+            return color + 'c' + data.value;
+        }
+        return "";
+    }
+    function classValue3(data,color){
+        if(data.display){
+            return color + data.value;
+        }
+        return "";
+    }
+    function classValue4(data,color){
+        if(data.display){
+            return color+ 'c' + data.value;
+        }
+        return "";
     }
     function show(data){
         if(data.display){
